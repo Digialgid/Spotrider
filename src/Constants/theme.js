@@ -1,6 +1,5 @@
 import { Dimensions } from "react-native";
 const { width, height } = Dimensions.get("window");
-
 export const COLORS = {
     // base colors
     primary: "#ff6701", // orange
@@ -11,7 +10,8 @@ export const COLORS = {
     white: "#ffffff",
 
     lightOrange: "#f9994b",
-    blue:"#0095f6",
+    darkOrange: "#ff6701",
+    blue: "#0095f6",
     darkBlue: "#1a2e53",
     darkBlue1: "##131e40",
     lightGray4: "#F8F8F9",
@@ -39,7 +39,6 @@ export const SIZES = {
     body4: 14,
     body5: 12,
 
-    // app dimensions
     width,
     height
 };
@@ -55,6 +54,8 @@ export const FONTS = {
     body3: { fontFamily: "Roboto-Regular", fontSize: SIZES.body3, lineHeight: 22 },
     body4: { fontFamily: "Roboto-Regular", fontSize: SIZES.body4, lineHeight: 22 },
     body5: { fontFamily: "Roboto-Regular", fontSize: SIZES.body5, lineHeight: 22 },
+    textInput: { fontSize: width / 25, color: COLORS.white },
+    icons: { width: 20, height: 20, tintColor: COLORS.white },
 };
 
 const appTheme = { COLORS, SIZES, FONTS };

@@ -1,32 +1,113 @@
-import React from "react";
-import { ImageBackground, StyleSheet, Text, View } from "react-native";
+import React from 'react';
+import { SafeAreaView, View, Image, Text, ScrollView, ImageBackground, TouchableOpacityBase, TextInput, TouchableOpacity } from "react-native";
+import Border from './inputBorder';
+import styles from './style';
+import DateTimePicker from '@react-native-community/datetimepicker';
+import { COLORS, icons, images } from '../../Constants/index';
+import Button from './Button';
+const Cat = () => {
+    return (
+        <SafeAreaView style={styles.SafeAreaViewstyle}>
+            <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ flexGrow: 1, }}>
+                <ImageBackground
+                    style={styles.imgBackground}
+                    resizeMode="cover"
+                    source={images.Addlocationbg}>
+                    <View style={styles.viewafterimagebg}>
+                        <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                            <TouchableOpacity style={{ marginStart: 10, marginTop: 10 }}>
+                                <Image source={icons.leftArrow} style={[styles.inputicon, { tintColor: COLORS.darkOrange }]} />
+                            </TouchableOpacity>
+                            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                <TouchableOpacity style={styles.menuiconstyle}>
+                                    <Image source={icons.search} style={[styles.inputicon, { tintColor: COLORS.darkOrange }]} />
+                                </TouchableOpacity>
+                                <TouchableOpacity style={styles.menuiconstyle}>
+                                    <Image source={icons.location} style={[styles.inputicon, { tintColor: COLORS.darkOrange }]} />
+                                </TouchableOpacity>
+                                <TouchableOpacity style={styles.menuiconstyle}>
+                                    <Image source={icons.menu} style={[styles.inputicon, { tintColor: COLORS.darkOrange }]} />
+                                </TouchableOpacity>
+                            </View>
+                        </View>
 
-const image = { uri: "https://reactjs.org/logo-og.png" };
 
-const App = () => (
-  <View style={styles.container}>
-    <ImageBackground source={image} resizeMode="cover" style={styles.image}>
-      {/* <Text style={styles.text}>Inside</Text> */}
-    </ImageBackground>
-  </View>
-);
+                        <View style={styles.inputView}>
+                            <View style={styles.inputView1}>
+                                <TouchableOpacity>
+                                    <Image source={icons.place} style={styles.inputicon} />
+                                </TouchableOpacity>
+                                <TextInput
+                                    style={[styles.input], { marginStart: 10 }}
+                                    placeholderTextColor={COLORS.white}
+                                    placeholder="Type Location here"
+                                />
+                            </View>
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  image: {
-    flex: 1,
-    justifyContent: "center"
-  },
-  text: {
-    color: "white",
-    fontSize: 42,
-    lineHeight: 84,
-    fontWeight: "bold",
-    textAlign: "center",
-    backgroundColor: "#000000c0"
-  }
-});
+                            <TouchableOpacity>
+                                <Image source={icons.location} style={styles.inputicon} />
+                            </TouchableOpacity>
+                        </View>
+                        <Border />
+                        <View style={styles.inputView}>
+                            <View style={styles.inputView1}>
+                                <TouchableOpacity>
+                                    <Image source={icons.place} style={styles.inputicon} />
+                                </TouchableOpacity>
+                                <TextInput
+                                    style={[styles.input], { marginStart: 10 }}
+                                    placeholderTextColor={COLORS.white}
+                                    placeholder="Location Name"
+                                />
+                            </View>
+                        </View>
+                        <Border />
 
-export default App;
+                        <View style={styles.datetimeinput}>
+                            <View style={{ width: '45%', }}>
+                                <View
+                                    style={styles.StartDateTime}>
+                                    <TextInput
+                                        style={styles.input1}
+                                        placeholderTextColor={COLORS.white}
+                                        placeholder="State Name"
+                                    />
+
+                                </View>
+                                <View style={styles.timeborder} />
+                            </View>
+                            <View style={{ width: '50%', }}>
+                                <View
+                                    style={styles.StartDateTime} >
+                                    <TextInput
+                                        style={styles.input1}
+                                        placeholderTextColor={COLORS.white}
+                                        placeholder="District Name"
+                                    />
+
+                                </View>
+                                <View style={styles.timeborder} />
+                            </View>
+                        </View>
+                        <View style={styles.descriptionView}>
+                            <Text style={{ color: COLORS.white, marginStart: 5 }}>Description</Text>
+                            <TextInput
+                                style={styles.descriptiontext}
+                                placeholderTextColor={COLORS.white}
+                                multiline={true}
+                            />
+                        </View>
+                        <View style={styles.uploadimagefolder}>
+                            <TouchableOpacity>
+                                <Text style={{ color: COLORS.white}}>UPLOAD IMAGE</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+                    <Button />
+                </ImageBackground>
+            </ScrollView>
+        </SafeAreaView>
+    );
+}
+
+export default Cat;
