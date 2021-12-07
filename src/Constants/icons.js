@@ -7,10 +7,10 @@ export const calendar = require('../../assets/icons/calendar.png');
 export const clock  =require('../../assets/icons/clock.png');
 export const leftArrow =  require('../../assets/icons/left-arrow.png');
 export const location =  require('../../assets/icons/location.png');
-
 export const call =  require('../../assets/icons/call.png');
 export const plus =  require('../../assets/icons/plus.png');
 export const menu =  require('../../assets/icons/menu.png');
+export const drop_Down = require('../../assets/icons/drop-down-arrow.png');
 
 export default {
     paperClip,
@@ -25,4 +25,5 @@ export default {
     call,
     plus,
     menu,
+    drop_Down,
 }

@@ -15,46 +15,21 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignSelf: 'center',
     },
-    inputView1: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center'
-    },
-    descriptionView: {
-        width: '90%',
-        // alignItems: 'center',
-        marginStart: 20,
-        marginEnd: 25,
-        marginTop: 40,
-        alignSelf: 'center',
-    },
-    descriptiontext: {
-        borderColor: "#fff",
-        borderWidth: 1,
-        borderRadius: 10,
-        width: '100%',
-        marginTop: 10,
-        height: 60
-    },
     viewafterimagebg: {
         flex: 1,
-        backgroundColor: "#000000c0",
+        // backgroundColor: "#000000c0",
     },
 
     input: {
         height: 40,
         borderWidth: 0,
-        width: '100%',
-        ...FONTS.textInpu
-        // color:COLORS.white,
+        ...FONTS.textInput,
     },
 
     input1: {
         height: 40,
         borderWidth: 0,
-        width: '100%',
-        ...FONTS.textInput,
-
+        width: '100%'
     },
 
     datetimeinput:
@@ -109,29 +84,6 @@ const styles = StyleSheet.create({
         height: '5%',
         justifyContent: 'center',
         alignItems: 'center',
-    },
-    uploadimagefolder: {
-        width: '90%',
-        alignSelf: 'center',
-        marginTop: 30,
-        borderRadius: 5,
-        backgroundColor: COLORS.darkOrange,
-        height: 70,
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
-    textInput: {
-        borderColor: "#fff",
-        borderWidth: 1,
-        borderRadius: 10,
-        width: '100%',
-        marginTop: 10,
-        height: 60,
-    },
-    menuiconstyle: {
-        marginStart: 5,
-        marginEnd: 10,
-        marginTop: 10
     }
 
 });

@@ -5,7 +5,7 @@ import styles from './style';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { COLORS, icons, images } from '../../Constants/index';
 import Button from './Button';
-// import Moment from 'moment';
+import Modal from "react-native-modal";
 
 const CreateEvent = ({ navigation }) => {
 
@@ -20,10 +20,17 @@ const CreateEvent = ({ navigation }) => {
   const [time, settime] = useState('');
   const [show, setShow] = useState(false);
 
+  const [isVisible, setisVisible] = useState(false);
+  const [Budgetlist, setBudgetList] = useState([{ type: "petrol", price: "1000", }, { type: "Room", price: "2000", }]);
+
   const showDatepicker = () => {
     setMode('date');
     setShow(true);
   };
+  const openBudgetpop = () => {
+    setisVisible(true);
+  };
+
   const onChange = (event, selectedDate) => {
     console.log("event", event);
     const currentDate = selectedDate || date;
@@ -34,6 +41,12 @@ const CreateEvent = ({ navigation }) => {
     setMode('time');
     setShow(true);
   };
+  const setModalVisible = (visible) => {
+    setisVisible(visible);
+  }
+
+  // if (!isVisible)
+  //   return null
   return (
 
     <SafeAreaView style={styles.SafeAreaViewstyle}>
@@ -79,7 +92,7 @@ const CreateEvent = ({ navigation }) => {
                 placeholderTextColor={COLORS.white}
                 placeholder="Budget"
               />
-              <TouchableOpacity>
+              <TouchableOpacity onPress={openBudgetpop}>
                 <Image source={icons.edit} style={styles.inputicon} />
               </TouchableOpacity>
             </View>
@@ -169,6 +182,33 @@ const CreateEvent = ({ navigation }) => {
               onChange={onChange}
             />
           )}
+          <Modal isVisible={isVisible}
+            onRequestClose={() => { setModalVisible(false) }}
+            style={{ width: '60%', alignSelf: 'center' }} >
+            <View style={{ backgroundColor: '#fff', height: 'auto', }}>
+              <View style={{ flexDirection: 'row', justifyContent: 'space-around', margin: '2%' }}>
+                <Text style={{ fontSize: 20 }}>Activity</Text>
+                <Text style={{ fontSize: 20 }}>Amount</Text>
+              </View>
+              {Budgetlist && Budgetlist.map((item) => (
+                <View style={{ flexDirection: 'row', justifyContent: 'space-around', margin: '2%' }}>
+                  <Text style={{ fontSize: 20 }} >{item.type}</Text>
+                  <Text style={{ fontSize: 20 }}>{item.price}</Text>
+                </View>
+              ))}
+              <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+                <View style={{ backgroundColor: COLORS.darkOrange, width: '50%', alignItems: 'center' }}>
+                  <Text style={{ color: COLORS.white, fontSize: 20 }}>Total</Text>
+                </View>
+                <View style={{ backgroundColor: COLORS.darkOrange, width: '50%', alignItems: 'center' }}>
+                  <Text style={{ color: COLORS.white, fontSize: 20 }}>27000</Text>
+                </View>
+              </View>
+            </View>
+
+
+
+          </Modal>
         </ImageBackground>
       </ScrollView>
     </SafeAreaView>

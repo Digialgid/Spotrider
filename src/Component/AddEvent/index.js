@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { SafeAreaView, View, Image, Text, ScrollView, ImageBackground, TouchableOpacityBase, TextInput, TouchableOpacity } from "react-native";
+import { SafeAreaView, View, Image, Text, ScrollView, ImageBackground, TouchableOpacityBase, TextInput, TouchableOpacity, ColorPropType } from "react-native";
 import Border from './inputBorder';
 import styles from './style';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { COLORS, icons, images } from '../../Constants/index';
 import Button from './Button';
-// import Moment from 'moment';
+import Modal from "react-native-modal";
 
 const AddEvent = ({ navigation }) => {
 
@@ -19,11 +19,22 @@ const AddEvent = ({ navigation }) => {
   const [mode, setMode] = useState('date');
   const [time, settime] = useState('');
   const [show, setShow] = useState(false);
+  const [isVisible, setisVisible] = useState(false);
+  const [categoryList, setcategoryList] = useState(["Popular Location", "High range", "Water falls", "For You"]);
 
   const showDatepicker = () => {
     setMode('date');
     setShow(true);
   };
+
+  const openCategoryPop = () => {
+    setisVisible(true);
+  };
+
+  const closeCategoryPop = () => {
+    setisVisible(false);
+  };
+
   const onChange = (event, selectedDate) => {
     console.log("event", event);
     const currentDate = selectedDate || date;
@@ -34,6 +45,13 @@ const AddEvent = ({ navigation }) => {
     setMode('time');
     setShow(true);
   };
+
+  const setModalVisible = (visible) => {
+    setisVisible(visible);
+  }
+
+  // if (!isVisible)
+  //   return null
   return (
 
     <SafeAreaView style={styles.SafeAreaViewstyle}>
@@ -159,8 +177,8 @@ const AddEvent = ({ navigation }) => {
                 placeholderTextColor={COLORS.white}
                 placeholder="Category"
               />
-              <TouchableOpacity >
-                <Image source={icons.search} style={styles.inputicon} />
+              <TouchableOpacity onPress={openCategoryPop}>
+                <Image source={icons.drop_Down} style={styles.inputicon} />
               </TouchableOpacity>
             </View>
             <Border />
@@ -173,6 +191,7 @@ const AddEvent = ({ navigation }) => {
 
           {show && (
             <DateTimePicker
+
               testID="dateTimePicker"
               value={date}
               mode={mode}
@@ -181,6 +200,26 @@ const AddEvent = ({ navigation }) => {
               onChange={onChange}
             />
           )}
+          <Modal isVisible={isVisible}
+            onRequestClose={() => {setModalVisible(false) }}
+            style={{ width: '50%', justifyContent: 'flex-end', alignContent: 'center', alignSelf: 'flex-end' }} >
+            <View style={{ backgroundColor: '#fff', height: 'auto', }}>
+              <View >
+                {categoryList && categoryList.map((item) => (
+                  <>
+                    <Text style={{ fontSize: 18, fontWeight: '400', margin: '3%', }} key={item}>{item}</Text>
+                    <View style={{ borderBottomColor: 'grey', borderWidth: .5 }}></View>
+                  </>
+                ))}
+                <View>
+                  <TouchableOpacity onPress={openCategoryPop} style={{ flexDirection: 'row', backgroundColor: COLORS.darkOrange, alignItems: 'center', }}>
+                    <Image source={icons.plus} style={[styles.inputicon, { margin: '3%' }]} />
+                    <Text style={{ marginLeft: '2%', color: COLORS.white, fontSize: 15 }}>Add Category</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </View>
+          </Modal>
         </ImageBackground>
       </ScrollView>
     </SafeAreaView>
