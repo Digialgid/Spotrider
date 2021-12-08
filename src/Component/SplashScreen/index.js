@@ -9,7 +9,7 @@ const SplashScreen = ({ navigation }) => {
 
   useEffect(() => {
     setTimeout(() => {
-      navigation.navigate('CreateRide');
+       navigation.navigate('CreateRide');
     }, 3000);
   }, []);
 

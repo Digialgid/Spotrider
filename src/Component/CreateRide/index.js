@@ -168,7 +168,7 @@ const CreateEvent = ({ navigation }) => {
 
           </View>
           {/* < Button  onPress={navigation.navigate('AddEvent')}/> */}
-          <TouchableOpacity style={styles.buttonBg} onPress={navigation.navigate('AddEvent')}>
+          <TouchableOpacity style={styles.buttonBg} onPress={()=>navigation.navigate('AddEvent')}>
             <Text style={styles.buttonText}>Save and Send Request </Text>
           </TouchableOpacity>
 
@@ -190,8 +190,8 @@ const CreateEvent = ({ navigation }) => {
                 <Text style={{ fontSize: 20 }}>Activity</Text>
                 <Text style={{ fontSize: 20 }}>Amount</Text>
               </View>
-              {Budgetlist && Budgetlist.map((item) => (
-                <View style={{ flexDirection: 'row', justifyContent: 'space-around', margin: '2%' }}>
+              {Budgetlist && Budgetlist.map((item,index) => (
+                <View style={{ flexDirection: 'row', justifyContent: 'space-around', margin: '2%' }}  key={index}>
                   <Text style={{ fontSize: 20 }} >{item.type}</Text>
                   <Text style={{ fontSize: 20 }}>{item.price}</Text>
                 </View>

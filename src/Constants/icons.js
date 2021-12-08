@@ -11,6 +11,13 @@ export const call =  require('../../assets/icons/call.png');
 export const plus =  require('../../assets/icons/plus.png');
 export const menu =  require('../../assets/icons/menu.png');
 export const drop_Down = require('../../assets/icons/drop-down-arrow.png');
+export const empty = require('../../assets/icons/empty.png');
+export const heart = require('../../assets/icons/heart.png');
+export const star = require('../../assets/icons/star.png');
+export const user = require('../../assets/icons/user.png');
+export const motorcycle = require('../../assets/icons/user.png');
+export const share = require('../../assets/icons/share.png');
+
 
 export default {
     paperClip,
@@ -26,4 +33,10 @@ export default {
     plus,
     menu,
     drop_Down,
+    empty,
+    heart,
+    star,
+    user,
+    motorcycle,
+    share
 }

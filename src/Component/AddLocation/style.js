@@ -34,7 +34,8 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         width: '100%',
         marginTop: 10,
-        height: 60
+        height: 60,
+        color:COLORS.white,
     },
     viewafterimagebg: {
         flex: 1,
@@ -45,16 +46,15 @@ const styles = StyleSheet.create({
         height: 40,
         borderWidth: 0,
         width: '100%',
-        ...FONTS.textInpu
-        // color:COLORS.white,
+        // ...FONTS.textInput
     },
 
     input1: {
         height: 40,
         borderWidth: 0,
         width: '100%',
-        ...FONTS.textInput,
-
+        color:COLORS.white,
+        // ...FONTS.textInput,
     },
 
     datetimeinput:

@@ -50,8 +50,7 @@ const AddEvent = ({ navigation }) => {
     setisVisible(visible);
   }
 
-  // if (!isVisible)
-  //   return null
+
   return (
 
     <SafeAreaView style={styles.SafeAreaViewstyle}>
@@ -163,7 +162,7 @@ const AddEvent = ({ navigation }) => {
                 style={styles.input}
                 placeholderTextColor={COLORS.white}
                 placeholder="Event Contact Person Number"
-                keyboardType={"Numeric"}
+                keyboardType={"numeric"}
               />
               <TouchableOpacity>
                 <Image source={icons.call} style={styles.inputicon} />
@@ -185,7 +184,7 @@ const AddEvent = ({ navigation }) => {
 
 
           </View>
-          <TouchableOpacity style={styles.buttonBg} onPress={navigation.navigate('AddLocation')} >
+          <TouchableOpacity style={styles.buttonBg} onPress={() => navigation.navigate('AddLocation')} >
             <Text style={styles.buttonText}>Submit</Text>
           </TouchableOpacity>
 
@@ -201,15 +200,15 @@ const AddEvent = ({ navigation }) => {
             />
           )}
           <Modal isVisible={isVisible}
-            onRequestClose={() => {setModalVisible(false) }}
+            onRequestClose={() => { setModalVisible(false) }}
             style={{ width: '50%', justifyContent: 'flex-end', alignContent: 'center', alignSelf: 'flex-end' }} >
             <View style={{ backgroundColor: '#fff', height: 'auto', }}>
               <View >
-                {categoryList && categoryList.map((item) => (
-                  <>
+                {categoryList && categoryList.map((item, index) => (
+                  < View key={index}>
                     <Text style={{ fontSize: 18, fontWeight: '400', margin: '3%', }} key={item}>{item}</Text>
                     <View style={{ borderBottomColor: 'grey', borderWidth: .5 }}></View>
-                  </>
+                  </View>
                 ))}
                 <View>
                   <TouchableOpacity onPress={openCategoryPop} style={{ flexDirection: 'row', backgroundColor: COLORS.darkOrange, alignItems: 'center', }}>

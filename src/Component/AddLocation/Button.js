@@ -8,7 +8,7 @@ import styles from './style';
 const Button = ({ navigation }) => {
 
   return (
-      <TouchableOpacity style={styles.buttonBg}  >
+      <TouchableOpacity style={styles.buttonBg} onPress={()=>navigation.navigate('HomeScreen')} >
             <Text style={styles.buttonText}>DONE</Text>
       </TouchableOpacity>
   );

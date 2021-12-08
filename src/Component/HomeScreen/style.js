@@ -5,85 +5,40 @@ const styles = StyleSheet.create({
     SafeAreaViewstyle: {
         flex: 1
     },
-    inputView: {
-        width: '90%',
-        flexDirection: 'row',
-        alignItems: 'center',
-        marginStart: 20,
-        marginEnd: 25,
-        marginTop: 40,
-        justifyContent: 'space-between',
-        alignSelf: 'center',
-    },
     viewafterimagebg: {
         flex: 1,
         // backgroundColor: "#000000c0",
     },
-
-    input: {
-        height: 40,
-        borderWidth: 0,
-        ...FONTS.textInput,
-    },
-
-    input1: {
-        height: 40,
-        borderWidth: 0,
-        width: '100%'
-    },
-
-    datetimeinput:
-    {
-        flexDirection: 'row',
-        width: '90%',
-        alignItems: 'center',
-        marginTop: 40,
-        justifyContent: 'space-between',
-        alignSelf: 'center',
-    },
-
-    StartDateTime: {
-        flexDirection: 'row',
-        width: '50%',
-        alignItems: 'center',
-    },
-
-    StartDateTime1: {
-        flexDirection: 'row',
-        width: '50%',
-        alignItems: 'center',
-        marginEnd: 5,
-        justifyContent: 'space-between',
-    },
-    timeborder: {
-        width: '100%',
-        borderWidth: .8,
-        borderColor: COLORS.white,
-        paddingHorizontal: 5,
-        alignSelf: 'center'
-    },
-
     imgBackground: {
         flex: 1,
     },
-
+    imageStyle: {
+        alignSelf: 'center',
+        height: '100%',
+        width: '100%',
+        borderRadius: 20
+    },
+    imageTextContainer: {
+        flexDirection: 'row',
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        bottom: 0,
+        height: 50,
+        justifyContent: 'space-between',
+        width: '100%',
+        backgroundColor: "#000000c0",
+        borderBottomLeftRadius: 20,
+        borderBottomRightRadius: 20,
+        padding: 10,
+    },
     inputicon: {
         ...FONTS.icons,
     },
-
-    inputicon1: {
-        ...FONTS.icons,
-        alignSelf: 'flex-end',
-    },
-    buttonText: {
-        color: COLORS.white,
-    },
-    buttonBg: {
-        backgroundColor: COLORS.darkOrange,
-        width: '100%',
-        height: '5%',
-        justifyContent: 'center',
-        alignItems: 'center',
+    starImageStyle:{
+        width: 15,
+    height: 15,
+    resizeMode: 'cover',
     }
 
 });

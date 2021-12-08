@@ -5,7 +5,8 @@ import styles from './style';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { COLORS, icons, images } from '../../Constants/index';
 import Button from './Button';
-const Cat = () => {
+import { NavigationContainer } from '@react-navigation/native';
+const Cat = ({navigation}) => {
     return (
         <SafeAreaView style={styles.SafeAreaViewstyle}>
             <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ flexGrow: 1, }}>
@@ -38,7 +39,7 @@ const Cat = () => {
                                     <Image source={icons.place} style={styles.inputicon} />
                                 </TouchableOpacity>
                                 <TextInput
-                                    style={[styles.input], { marginStart: 10 }}
+                                    style={[styles.input], { marginStart: 10, color:COLORS.white,}}
                                     placeholderTextColor={COLORS.white}
                                     placeholder="Type Location here"
                                 />
@@ -55,7 +56,7 @@ const Cat = () => {
                                     <Image source={icons.place} style={styles.inputicon} />
                                 </TouchableOpacity>
                                 <TextInput
-                                    style={[styles.input], { marginStart: 10 }}
+                                    style={[styles.input], { marginStart: 10 ,color:COLORS.white,}}
                                     placeholderTextColor={COLORS.white}
                                     placeholder="Location Name"
                                 />
@@ -99,11 +100,13 @@ const Cat = () => {
                         </View>
                         <View style={styles.uploadimagefolder}>
                             <TouchableOpacity>
-                                <Text style={{ color: COLORS.white}}>UPLOAD IMAGE</Text>
+                                <Text style={{ color: COLORS.white }}>UPLOAD IMAGE</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
-                    <Button />
+                    <TouchableOpacity style={styles.buttonBg} onPress={() => navigation.navigate('HomeScreen')} >
+                        <Text style={styles.buttonText}>DONE</Text>
+                    </TouchableOpacity>
                 </ImageBackground>
             </ScrollView>
         </SafeAreaView>
