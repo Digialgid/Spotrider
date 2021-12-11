@@ -29,7 +29,8 @@ const styles = StyleSheet.create({
     input1: {
         height: 40,
         borderWidth: 0,
-        width: '100%'
+        width: '100%',
+        color:COLORS.white,
     },
 
     datetimeinput:

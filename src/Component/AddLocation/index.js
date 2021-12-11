@@ -4,7 +4,6 @@ import Border from './inputBorder';
 import styles from './style';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { COLORS, icons, images } from '../../Constants/index';
-import Button from './Button';
 import { NavigationContainer } from '@react-navigation/native';
 const Cat = ({navigation}) => {
     return (

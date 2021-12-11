@@ -6,6 +6,9 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import { COLORS, icons, images } from '../../Constants/index';
 import Button from './Button';
 import Modal from "react-native-modal";
+import moment from "moment";
+import ImagePicker from 'react-native-image-picker';
+
 
 const AddEvent = ({ navigation }) => {
 
@@ -15,12 +18,14 @@ const AddEvent = ({ navigation }) => {
   const [comment, setcomment] = useState('');
   const [CreateRide, setCreateRide] = useState('');
   const [search, setsearch] = useState('');
-  const [date, setDate] = useState(new Date(1598051730000));
+  const [date, setDate] = useState('');
   const [mode, setMode] = useState('date');
   const [time, settime] = useState('');
   const [show, setShow] = useState(false);
   const [isVisible, setisVisible] = useState(false);
   const [categoryList, setcategoryList] = useState(["Popular Location", "High range", "Water falls", "For You"]);
+  const [filePath, setFilePath] = useState({});
+
 
   const showDatepicker = () => {
     setMode('date');
@@ -36,10 +41,18 @@ const AddEvent = ({ navigation }) => {
   };
 
   const onChange = (event, selectedDate) => {
-    console.log("event", event);
     const currentDate = selectedDate || date;
     setShow(Platform.OS === 'ios');
-    setDate(currentDate);
+    if (mode == "date") {
+      console.log(mode)
+      setDate(moment(currentDate).format("DD-MM-YYYY "));
+    }
+    else {
+      console.log(currentDate.toString())
+      console.log(moment(currentDate).format("hh:mm a"));
+      settime(moment(currentDate).format("hh:mm a"));
+      // console.log("time",time);
+    }
   };
   const showTimepicker = () => {
     setMode('time');
@@ -49,6 +62,44 @@ const AddEvent = ({ navigation }) => {
   const setModalVisible = (visible) => {
     setisVisible(visible);
   }
+
+  const chooseFile = () => {
+    let options = {
+      title: 'Select Image',
+      customButtons: [
+        {
+          name: 'customOptionKey',
+          title: 'Choose Photo from Custom Option'
+        },
+      ],
+      storageOptions: {
+        skipBackup: true,
+        path: 'images',
+      },
+    };
+    ImagePicker.showImagePicker(options, (response) => {
+      console.log('Response = ', response);
+
+      if (response.didCancel) {
+        console.log('User cancelled image picker');
+      } else if (response.error) {
+        console.log('ImagePicker Error: ', response.error);
+      } else if (response.customButton) {
+        console.log(
+          'User tapped custom button: ',
+          response.customButton
+        );
+        alert(response.customButton);
+      } else {
+        let source = response;
+        // You can also display the image using data:
+        // let source = {
+        //   uri: 'data:image/jpeg;base64,' + response.data
+        // };
+        setFilePath(source);
+      }
+    });
+  };
 
 
   return (
@@ -95,8 +146,8 @@ const AddEvent = ({ navigation }) => {
                 style={styles.input}
                 placeholderTextColor={COLORS.white}
                 placeholder="Image Upload"
-              />
-              <TouchableOpacity>
+                              />
+              <TouchableOpacity >
                 <Image source={icons.paperClip} style={styles.inputicon} />
               </TouchableOpacity>
             </View>
@@ -115,13 +166,14 @@ const AddEvent = ({ navigation }) => {
             <Border />
 
             <View style={styles.datetimeinput}>
-              <View style={{ width: '45%', }}>
+              <View style={{ width: '40%', }}>
                 <View
                   style={styles.StartDateTime}>
                   <TextInput
                     style={styles.input1}
                     placeholderTextColor={COLORS.white}
                     placeholder="Start Date"
+                    value={date}
                   />
                   <TouchableOpacity style={{ width: '100%' }} onPress={showDatepicker}>
                     <Image source={icons.calendar} style={styles.inputicon1} />
@@ -129,15 +181,16 @@ const AddEvent = ({ navigation }) => {
                 </View>
                 <View style={styles.timeborder} />
               </View>
-              <View style={{ width: '50%', }}>
+              <View style={{ width: '55%', }}>
                 <View
                   style={styles.StartDateTime} >
                   <TextInput
                     style={styles.input1}
                     placeholderTextColor={COLORS.white}
-                    placeholder="Number of "
+                    placeholder="Number of Date"
+                    value={date}
                   />
-                  <TouchableOpacity onPress={showTimepicker} style={{ width: '100%' }}>
+                  <TouchableOpacity onPress={showDatepicker} style={{ width: '100%' }}>
                     <Image source={icons.clock} style={styles.inputicon1} />
                   </TouchableOpacity>
                 </View>
@@ -150,8 +203,9 @@ const AddEvent = ({ navigation }) => {
                 style={styles.input}
                 placeholderTextColor={COLORS.white}
                 placeholder="Time"
+                value={time}
               />
-              <TouchableOpacity>
+              <TouchableOpacity onPress={showTimepicker}>
                 <Image source={icons.clock} style={styles.inputicon} />
               </TouchableOpacity>
             </View>
@@ -190,9 +244,8 @@ const AddEvent = ({ navigation }) => {
 
           {show && (
             <DateTimePicker
-
               testID="dateTimePicker"
-              value={date}
+              value={new Date()}
               mode={mode}
               is24Hour={true}
               display="default"

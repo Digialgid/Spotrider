@@ -9,18 +9,18 @@ const Tab = createBottomTabNavigator();
 
 export default function App() {
     return (
-        <Tab.Navigator  screenOptions={{ headerShown: false, }} 
-        tabBarOptions={{
-            activeTintColor: '#fff',
-            inactiveTintColor: 'lightgray',
-            activeBackgroundColor: '#c4461c',
-            inactiveBackgroundColor: '#b55031',
+        <Tab.Navigator
+            screenOptions={{
+
+                headerShown: false,
+
                 style: {
-                      backgroundColor: '#CE4418',
-                      paddingBottom: 3,
-                      
+                    background: 'red',
+                    paddingBottom: 3,
+                    activeBackgroundColor: '#c4461c',
+                    inactiveBackgroundColor: '#b55031',
                 }
-         }}>
+            }}>
             <Tab.Screen name="Location1" component={HomeScreen}
                 options={{
                     tabBarLabel: ({ focused }) => (
@@ -64,7 +64,7 @@ export default function App() {
                         <Text style={{ ...FONTS.h5, color: focused ? COLORS.primary : COLORS.lightGray1 }}> Ride </Text>),
                     tabBarIcon: ({ focused }) => (
                         <Image
-                            source={icons.location}
+                            source={icons.motorcycle}
                             resizeMode="contain"
                             style={{
                                 width: 25,
@@ -81,7 +81,7 @@ export default function App() {
                         <Text style={{ ...FONTS.h5, color: focused ? COLORS.primary : COLORS.lightGray1 }}>Profile</Text>),
                     tabBarIcon: ({ focused }) => (
                         <Image
-                            source={icons.location}
+                            source={icons.user}
                             resizeMode="contain"
                             style={{
                                 width: 25,

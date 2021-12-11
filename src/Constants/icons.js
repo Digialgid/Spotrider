@@ -4,20 +4,19 @@ export const comment = require('../../assets/icons/comment.png');
 export const place = require('../../assets/icons/place.png');
 export const search = require('../../assets/icons/search.png');
 export const calendar = require('../../assets/icons/calendar.png');
-export const clock  =require('../../assets/icons/clock.png');
-export const leftArrow =  require('../../assets/icons/left-arrow.png');
-export const location =  require('../../assets/icons/location.png');
-export const call =  require('../../assets/icons/call.png');
-export const plus =  require('../../assets/icons/plus.png');
-export const menu =  require('../../assets/icons/menu.png');
+export const clock = require('../../assets/icons/clock.png');
+export const leftArrow = require('../../assets/icons/left-arrow.png');
+export const location = require('../../assets/icons/location.png');
+export const call = require('../../assets/icons/call.png');
+export const plus = require('../../assets/icons/plus.png');
+export const menu = require('../../assets/icons/menu.png');
 export const drop_Down = require('../../assets/icons/drop-down-arrow.png');
 export const empty = require('../../assets/icons/empty.png');
 export const heart = require('../../assets/icons/heart.png');
 export const star = require('../../assets/icons/star.png');
 export const user = require('../../assets/icons/user.png');
-export const motorcycle = require('../../assets/icons/user.png');
+export const motorcycle = require('../../assets/icons/motorcycle.png');
 export const share = require('../../assets/icons/share.png');
-
 
 export default {
     paperClip,

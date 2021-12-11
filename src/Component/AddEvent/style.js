@@ -24,12 +24,14 @@ const styles = StyleSheet.create({
         height: 40,
         borderWidth: 0,
         ...FONTS.textInput,
+        color:COLORS.white
     },
 
     input1: {
         height: 40,
         borderWidth: 0,
-        width: '100%'
+        width: '100%',
+        color:COLORS.white
     },
 
     datetimeinput:

@@ -1,4 +1,4 @@
-//Example of Splash, Login and Sign Up in React Native
+// Start Splash  Screen 
 
 import React, { useEffect, } from 'react';
 import { ImageBackground, SafeAreaView } from 'react-native';
@@ -6,13 +6,11 @@ import styles from './style';
 import { images } from '../../Constants/';
 
 const SplashScreen = ({ navigation }) => {
-
   useEffect(() => {
     setTimeout(() => {
-       navigation.navigate('CreateRide');
+      navigation.navigate('CreateRide');
     }, 3000);
   }, []);
-
 
   return (
     <SafeAreaView style={styles.safeAreaStyle}>
