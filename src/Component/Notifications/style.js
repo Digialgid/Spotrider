@@ -8,8 +8,7 @@ const styles = StyleSheet.create({
     },
     viewafterimagebg: {
         flex: 1,
-        backgroundColor: COLORS.Transparent,
-        opacity: 1
+        // backgroundColor: COLORS.Transparent,
     },
     imgBackground: {
         flex: 1,
@@ -29,14 +28,13 @@ const styles = StyleSheet.create({
     },
     NotificationsContainer: {
         flexDirection: 'row',
-        marginTop: 40,
-        margin:'4%',
-        // height:'auto',
-        borderRadius:10,
-        borderWidth:1,
-        // minHeight:'50%', 
-        borderColor:COLORS.white,
-        
+        marginTop: 25,
+        margin: '2%',
+        borderRadius: 10,
+        borderWidth: 1,
+        borderColor: COLORS.white,
+        height: '20%'
+
     },
     EventName: {
         color: COLORS.white,
@@ -45,6 +43,7 @@ const styles = StyleSheet.create({
     Discription: {
         color: COLORS.realName,
         ...FONTS.body2,
+        height: '45%',
     },
     imageContainer: {
         height: SIZES.height / 10,
@@ -54,10 +53,10 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
         borderRadius: PixelRatio.getPixelSizeForLayoutSize(100),
-       
+
     },
     buttonbg: {
-        backgroundColor: COLORS.blue,
+        backgroundColor: COLORS.darkOrange,
         width: SIZES.width / 5,
         height: SIZES.height / 30,
         alignContent: 'center',
@@ -65,9 +64,19 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderRadius: 5
     },
-    buttontext:{
-        color: COLORS.white, 
+    buttontext: {
+        color: COLORS.white,
         fontSize: 15,
+    },
+    declinebuttton: {
+        width: SIZES.width / 5,
+        height: SIZES.height / 30,
+        alignContent: 'center',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 5,
+        borderWidth: 1,
+        borderColor: COLORS.white
     }
 });
 

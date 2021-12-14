@@ -33,18 +33,14 @@ export const SIZES = {
 };
 
 export const FONTS = {
-    largeTitle: { fontFamily: "Roboto-regular", fontSize: SIZES.largeTitle, lineHeight: 55 },
-    h1: { fontFamily: "Roboto-Black", fontSize: SIZES.h1, lineHeight: 36 },
-    h2: { fontFamily: "Roboto-Bold", fontSize: SIZES.h2, lineHeight: 30 },
-    h3: { fontFamily: "Roboto-Bold", fontSize: SIZES.h3, lineHeight: 22 },
-    h4: { fontFamily: "Roboto-Bold", fontSize: SIZES.h4, lineHeight: 22 },
-    body1: { fontFamily: "Roboto-Regular", fontSize: wf("5%"),  },
-    body2: { fontFamily: "Roboto-Regular", fontSize: wf("3.5%"), },
-    body3: { fontFamily: "Roboto-Regular", fontSize: wf("5%"), },
-    body4: { fontFamily: "Roboto-Regular", fontSize: wf("5%"), },
-    body5: { fontFamily: "Roboto-Regular", fontSize: wf("5%"), },
-    headerHeading: { fontFamily: "Roboto-Regular", fontSize: wf("5%"),},
-    textInput: { fontSize: width / 25, color: COLORS.white },
+   
+    body1: { fontFamily: "OpenSans-Regular", fontSize: wf("5%"),  },
+    body2: { fontFamily: "OpenSans-Regular", fontSize: wf("3.5%"), },
+    body3: { fontFamily: "OpenSans-Bold", fontSize: wf("4%"), },
+    body4: { fontFamily: "OpenSans-Bold", fontSize: wf("5%"), },
+    body5: { fontFamily: "OpenSans-Regular", fontSize: wf("5%"), },
+    headerHeading: { fontFamily: "Poppins-SemiBold", fontSize: wf("5%"),},
+    textInput: {  fontFamily: "OpenSans-Regular",fontSize: wf("4%"), color: COLORS.white },
     icons: { width: 20, height: 20, tintColor: COLORS.white },
 };
 

@@ -16,7 +16,7 @@ const Followers = ({ navigation }) => {
                 <ImageBackground
                     style={styles.imgBackground}
                     resizeMode="cover"
-                    source={images.Addlocationbg}>
+                    source={images.Followersbg}>
                     <View style={styles.viewafterimagebg}>
                         <View>
                             <TouchableOpacity style={styles.arrwoeiconbg}>
@@ -36,8 +36,8 @@ const Followers = ({ navigation }) => {
                                     <Text style={styles.Realname}>{item.realName}</Text>
                                 </View>
                                 <View>
-                                    <TouchableOpacity style={styles.buttonbg}>
-                                        <Text styles={styles.followtext}>Follow</Text>
+                                    <TouchableOpacity style={styles.buttonbg} onPress={()=>navigation.navigate('Notifications')}>
+                                        <Text style={styles.followtext}>Follow</Text>
                                     </TouchableOpacity>
                                 </View>
                             </View>

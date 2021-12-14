@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
     },
     viewafterimagebg: {
         flex: 1,
-        backgroundColor: COLORS.Transparent,
+        // backgroundColor: COLORS.Transparent,
         opacity: 1
     },
     imgBackground: {
@@ -46,13 +46,13 @@ const styles = StyleSheet.create({
         width:SIZES.width/4
     },
     imageContainer: {
-        height: SIZES.height / 10,
-        width: SIZES.width / 5,
+        height: 70,
+        width: 70,
     },
     followimage: {
         width: '100%',
         height: '100%',
-        borderRadius: PixelRatio.getPixelSizeForLayoutSize(100),
+        borderRadius: 50,
        
     },
     buttonbg: {
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     },
     followtext:{
         color: COLORS.white, 
-        fontSize: 15,
+        ...FONTS.body3
     }
 });
 

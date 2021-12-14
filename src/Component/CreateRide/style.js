@@ -11,18 +11,19 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginStart: 20,
         marginEnd: 25,
-        marginTop: 40,
+        marginTop: 25,
         justifyContent: 'space-between',
         alignSelf: 'center',
     },
     viewafterimagebg: {
         flex: 1,
-        backgroundColor: "#000000c0",
+        // backgroundColor: "#000000c0",
     },
 
     input: {
         height: 40,
         borderWidth: 0,
+        width: '85%',
         ...FONTS.textInput,
     },
 
@@ -30,7 +31,7 @@ const styles = StyleSheet.create({
         height: 40,
         borderWidth: 0,
         width: '100%',
-        color:COLORS.white,
+        ...FONTS.textInput,
     },
 
     datetimeinput:
@@ -38,26 +39,18 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         width: '90%',
         alignItems: 'center',
-        marginTop: 40,
+        marginTop: 20,
         justifyContent: 'space-between',
         alignSelf: 'center',
     },
 
     StartDateTime: {
         flexDirection: 'row',
-        width: '50%',
         alignItems: 'center',
-    },
-
-    StartDateTime1: {
-        flexDirection: 'row',
-        width: '50%',
-        alignItems: 'center',
-        marginEnd: 5,
-        justifyContent: 'space-between',
+        width: '80%'
     },
     timeborder: {
-        width: '100%',
+        width: '95%',
         borderWidth: .8,
         borderColor: COLORS.white,
         paddingHorizontal: 5,
@@ -78,13 +71,16 @@ const styles = StyleSheet.create({
     },
     buttonText: {
         color: COLORS.white,
+        ...FONTS.body3,
+        textTransform: 'uppercase',
     },
     buttonBg: {
         backgroundColor: COLORS.darkOrange,
         width: '100%',
-        height: '5%',
+        height: '6%',
         justifyContent: 'center',
         alignItems: 'center',
+        marginTop: 10,
     }
 
 });

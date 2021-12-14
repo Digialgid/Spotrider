@@ -6,6 +6,7 @@ import HomeScreen from './HomeScreen';
 import Followers  from './Followers';
 import Location from './Location';
 import Notifications from './Notifications';
+import Budget from './BudgetNewScreen';
 
 export {
     SplashScreen,
@@ -16,4 +17,5 @@ export {
     Followers,
     Location,
     Notifications,
+    Budget,
 }

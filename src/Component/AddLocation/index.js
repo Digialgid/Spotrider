@@ -1,18 +1,16 @@
 import React from 'react';
-import { SafeAreaView, View, Image, Text, ScrollView, ImageBackground, TouchableOpacityBase, TextInput, TouchableOpacity } from "react-native";
+import { SafeAreaView, View, Image, Text, ScrollView, ImageBackground, TextInput, TouchableOpacity } from "react-native";
 import Border from './inputBorder';
 import styles from './style';
-import DateTimePicker from '@react-native-community/datetimepicker';
-import { COLORS, icons, images } from '../../Constants/index';
-import { NavigationContainer } from '@react-navigation/native';
-const Cat = ({navigation}) => {
+import { COLORS,FONTS, icons, images } from '../../Constants';
+const Addlocation = ({navigation}) => {
     return (
         <SafeAreaView style={styles.SafeAreaViewstyle}>
             <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ flexGrow: 1, }}>
                 <ImageBackground
                     style={styles.imgBackground}
                     resizeMode="cover"
-                    source={images.Addlocationbg}>
+                    source={images.Addbg}>
                     <View style={styles.viewafterimagebg}>
                         <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                             <TouchableOpacity style={{ marginStart: 10, marginTop: 10 }}>
@@ -38,7 +36,7 @@ const Cat = ({navigation}) => {
                                     <Image source={icons.place} style={styles.inputicon} />
                                 </TouchableOpacity>
                                 <TextInput
-                                    style={[styles.input], { marginStart: 10, color:COLORS.white,}}
+                                    style={[styles.input]}
                                     placeholderTextColor={COLORS.white}
                                     placeholder="Type Location here"
                                 />
@@ -55,7 +53,7 @@ const Cat = ({navigation}) => {
                                     <Image source={icons.place} style={styles.inputicon} />
                                 </TouchableOpacity>
                                 <TextInput
-                                    style={[styles.input], { marginStart: 10 ,color:COLORS.white,}}
+                                    style={[styles.input]}
                                     placeholderTextColor={COLORS.white}
                                     placeholder="Location Name"
                                 />
@@ -64,7 +62,7 @@ const Cat = ({navigation}) => {
                         <Border />
 
                         <View style={styles.datetimeinput}>
-                            <View style={{ width: '45%', }}>
+                            <View style={{ width: '50%', }}>
                                 <View
                                     style={styles.StartDateTime}>
                                     <TextInput
@@ -90,7 +88,7 @@ const Cat = ({navigation}) => {
                             </View>
                         </View>
                         <View style={styles.descriptionView}>
-                            <Text style={{ color: COLORS.white, marginStart: 5 }}>Description</Text>
+                            <Text style={{ color: COLORS.white, ...FONTS.textInput, marginStart: 5 }}>Description</Text>
                             <TextInput
                                 style={styles.descriptiontext}
                                 placeholderTextColor={COLORS.white}
@@ -99,11 +97,11 @@ const Cat = ({navigation}) => {
                         </View>
                         <View style={styles.uploadimagefolder}>
                             <TouchableOpacity>
-                                <Text style={{ color: COLORS.white }}>UPLOAD IMAGE</Text>
+                                <Text style={styles.buttonText}>UPLOAD IMAGE</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
-                    <TouchableOpacity style={styles.buttonBg} onPress={() => navigation.navigate('HomeScreen')} >
+                    <TouchableOpacity style={styles.buttonBg} onPress={() => navigation.navigate('Followers')} >
                         <Text style={styles.buttonText}>DONE</Text>
                     </TouchableOpacity>
                 </ImageBackground>
@@ -112,4 +110,4 @@ const Cat = ({navigation}) => {
     );
 }
 
-export default Cat;
+export default Addlocation;

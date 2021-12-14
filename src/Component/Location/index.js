@@ -8,10 +8,10 @@ const HomeScreen = ({ navigation }) => {
     const [defaultRating, setDefaultRating] = useState(2);
     const [maxRating, setMaxRating] = useState([1, 2, 3, 4, 5]);
     const [SlidetList, setSliderList] = useState([
-        { id: 1, image: images.bg1 },
-        { id: 2, image: images.bg3 },
-        { id: 3, image: images.bg4 },
-        { id: 4, image: images.bg5 }]);
+        { id: 1, image: images.bg7 },
+        { id: 2, image: images.bg8 },
+        { id: 3, image: images.bg9 },
+        { id: 4, image: images.bg10 }]);
     const [text, setText] = useState([{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }])
 
     return (
@@ -21,11 +21,11 @@ const HomeScreen = ({ navigation }) => {
                 <ImageBackground
                     style={styles.imgBackground}
                     resizeMode="cover"
-                    source={images.Addlocationbg}>
+                    source={images.Locationbg}>
                     <View style={styles.viewafterimagebg}>
                         <View style={{ flexDirection: 'row', justifyContent: 'space-between', }}>
-                            <TouchableOpacity style={{ marginStart: 10, marginTop: 10 }}>
-                                <Image source={icons.leftArrow} style={[styles.inputicon, { tintColor: COLORS.darkOrange }]} />
+                            <TouchableOpacity style={{ marginStart: 10, marginTop: 10 }} onPress={()=>navigation.navigate('HomeScreen')}>
+                                <Image source={icons.HomeIcon} style={[styles.inputicon, { tintColor: COLORS.darkOrange }]} />
                             </TouchableOpacity>
                             <View style={{ flexDirection: 'row', alignItems: 'center', width: '30%', justifyContent: 'space-evenly' }}>
                                 <TouchableOpacity style={styles.menuiconstyle}>
@@ -40,7 +40,6 @@ const HomeScreen = ({ navigation }) => {
                             </View>
                         </View>
 
-
                         <FlatList
                             data={SlidetList}
                             horizontal={true}
@@ -48,8 +47,8 @@ const HomeScreen = ({ navigation }) => {
                             keyExtractor={(item) => item.id}
                             renderItem={({ item }) => (
                                 <View style={[styles.sliderContainer]}>
-                                    <Image style={styles.imageStyle} resizeMode={'cover'} source={images.bg3} />
-                                    <Text style={styles.imagesliderText}>place near </Text>
+                                    <Image style={styles.imageStyle} resizeMode={'cover'} source={item.image} />
+                                    <Text style={styles.imagesliderText}>place   near </Text>
                                 </View>
                             )}
                         />
@@ -122,7 +121,6 @@ const HomeScreen = ({ navigation }) => {
                                                 })}
                                             </View>
                                         </View>
-
                                     </View>
                                 </View>
                             )}

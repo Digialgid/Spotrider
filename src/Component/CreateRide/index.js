@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import {
   SafeAreaView, View, Image, Text, ScrollView,
-  PermissionsAndroid, ImageBackground, TouchableOpacityBase, TextInput, TouchableOpacity
+  PermissionsAndroid, ImageBackground, TextInput, TouchableOpacity
 } from "react-native";
 import Border from './inputBorder';
 import styles from './style';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { COLORS, icons, images } from '../../Constants/index';
-import Modal from "react-native-modal";
 import moment from "moment";
 import {
   launchCamera,
@@ -15,20 +14,12 @@ import {
 } from 'react-native-image-picker';
 const CreateEvent = ({ navigation }) => {
 
-  const [profile, setprofile] = useState('');
-  const [kilometer, setKilometer] = useState('');
-  const [Budget, setBudget] = useState('');
-  const [comment, setcomment] = useState('');
-  const [CreateRide, setCreateRide] = useState('');
-  const [search, setsearch] = useState('');
+
   const [date, setDate] = useState('');
   const [mode, setMode] = useState('date');
   const [time, settime] = useState('');
   const [show, setShow] = useState(false);
-
-  const [filePath, setFilePath] = useState("rn_image_picker_lib_temp_d19c6e88-3ff2-4f24-b877-f7eca9afa177.jpg");
-
-  const [isVisible, setisVisible] = useState(false);
+  const [filePath, setFilePath] = useState("");
   const [Budgetlist, setBudgetList] = useState([{ type: "petrol", price: "1000", }, { type: "Room", price: "2000", }]);
 
   const showDatepicker = (e) => {
@@ -132,14 +123,6 @@ const CreateEvent = ({ navigation }) => {
           alert(response.errorMessage);
           return;
         }
-        // console.log('base64 -> ', response.base64);
-        // console.log('uri -> ', response.uri);
-        // console.log('width -> ', response.width);
-        // console.log('height -> ', response.height);
-        // console.log('fileSize -> ', response.fileSize);
-        // console.log('type -> ', response.type);
-        // console.log('fileName -> ', response.fileName);
-        // setFilePath(response);
       });
     }
   };
@@ -150,11 +133,11 @@ const CreateEvent = ({ navigation }) => {
         <ImageBackground
           style={styles.imgBackground}
           resizeMode="cover"
-          source={images.Addlocationbg}>
+          source={images.CreaterideBG}>
           <View style={styles.viewafterimagebg}>
             <View>
               <TouchableOpacity style={{ marginStart: 10, marginTop: 10 }}>
-                <Image source={icons.leftArrow} style={[styles.inputicon, { tintColor: COLORS.darkOrange }]} />
+                <Image source={icons.leftArrow} style={[styles.inputicon, { tintColor: COLORS.lightOrange }]} />
               </TouchableOpacity>
             </View>
 
@@ -178,6 +161,7 @@ const CreateEvent = ({ navigation }) => {
                 style={styles.input}
                 placeholderTextColor={COLORS.white}
                 placeholder="Kilometers"
+                keyboardType={"numeric"}
               />
               <TouchableOpacity>
                 <Image source={icons.edit} style={styles.inputicon} />
@@ -191,8 +175,9 @@ const CreateEvent = ({ navigation }) => {
                 style={styles.input}
                 placeholderTextColor={COLORS.white}
                 placeholder="Budget"
+                keyboardType={"numeric"}
               />
-              <TouchableOpacity onPress={openBudgetpop}>
+              <TouchableOpacity onPress={()=>navigation.navigate('Budget')}>
                 <Image source={icons.edit} style={styles.inputicon} />
               </TouchableOpacity>
             </View>
@@ -212,22 +197,21 @@ const CreateEvent = ({ navigation }) => {
             <Border />
 
             <View style={styles.datetimeinput}>
-              <View style={{ width: '45%', }}>
-                <View
-                  style={styles.StartDateTime}>
+              <View style={{ width: '50%', }}>
+                <View style={styles.StartDateTime}>
                   <TextInput
                     style={styles.input1}
                     value={date}
                     placeholderTextColor={COLORS.white}
                     placeholder="Start Date"
                   />
-                  <TouchableOpacity style={{ width: '100%' }} onPress={showDatepicker}>
+                  <TouchableOpacity onPress={showDatepicker}>
                     <Image source={icons.calendar} style={styles.inputicon1} />
                   </TouchableOpacity>
                 </View>
                 <View style={styles.timeborder} />
               </View>
-              <View style={{ width: '45%', }}>
+              <View style={{ width: '50%', }}>
                 <View
                   style={styles.StartDateTime} >
                   <TextInput
@@ -236,8 +220,8 @@ const CreateEvent = ({ navigation }) => {
                     placeholder="Start Time"
                     value={time}
                   />
-                  <TouchableOpacity onPress={showTimepicker} style={{ width: '100%' }}>
-                    <Image source={icons.clock} style={styles.inputicon1} />
+                  <TouchableOpacity onPress={showTimepicker} >
+                    <Image source={icons.clock} style={[styles.inputicon1, { marginStart: 10 }]} />
                   </TouchableOpacity>
                 </View>
                 <View style={styles.timeborder} />
@@ -284,30 +268,8 @@ const CreateEvent = ({ navigation }) => {
               onChange={onChange}
             />
           )}
-          <Modal isVisible={isVisible}
-            onRequestClose={() => { setModalVisible(false) }}
-            style={{ width: '60%', alignSelf: 'center' }} >
-            <View style={{ backgroundColor: '#fff', height: 'auto', }}>
-              <View style={{ flexDirection: 'row', justifyContent: 'space-around', margin: '2%' }}>
-                <Text style={{ fontSize: 20 }}>Activity</Text>
-                <Text style={{ fontSize: 20 }}>Amount</Text>
-              </View>
-              {Budgetlist && Budgetlist.map((item, index) => (
-                <View style={{ flexDirection: 'row', justifyContent: 'space-around', margin: '2%' }} key={index}>
-                  <Text style={{ fontSize: 20 }} >{item.type}</Text>
-                  <Text style={{ fontSize: 20 }}>{item.price}</Text>
-                </View>
-              ))}
-              <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-                <View style={{ backgroundColor: COLORS.darkOrange, width: '50%', alignItems: 'center' }}>
-                  <Text style={{ color: COLORS.white, fontSize: 20 }}>Total</Text>
-                </View>
-                <View style={{ backgroundColor: COLORS.darkOrange, width: '50%', alignItems: 'center' }}>
-                  <Text style={{ color: COLORS.white, fontSize: 20 }}>27000</Text>
-                </View>
-              </View>
-            </View>
-          </Modal>
+
+
         </ImageBackground>
       </ScrollView>
     </SafeAreaView>

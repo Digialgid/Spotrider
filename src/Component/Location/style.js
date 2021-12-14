@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
     },
     viewafterimagebg: {
         flex: 1,
-        backgroundColor: "#000000c0",
+        // backgroundColor: "#000000c0",
     },
     imgBackground: {
         flex: 1,
@@ -57,11 +57,11 @@ const styles = StyleSheet.create({
 
     locationName2: {
         color: COLORS.white,
-        fontSize: 10,
+        fontSize: 8,
     },
     locationName1: {
         color: COLORS.white,
-        fontSize: 12,
+        fontSize: 10,
     },
 
     inputicon: {

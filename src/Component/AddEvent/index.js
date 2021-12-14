@@ -1,23 +1,15 @@
 import React, { useState } from "react";
-import { SafeAreaView, View, Image, Text, ScrollView, ImageBackground, TouchableOpacityBase, TextInput, TouchableOpacity, ColorPropType } from "react-native";
+import { SafeAreaView, View, Image, Text, ScrollView, ImageBackground, TextInput, TouchableOpacity, ColorPropType } from "react-native";
 import Border from './inputBorder';
 import styles from './style';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { COLORS, icons, images } from '../../Constants/index';
-import Button from './Button';
 import Modal from "react-native-modal";
 import moment from "moment";
 import ImagePicker from 'react-native-image-picker';
 
 
 const AddEvent = ({ navigation }) => {
-
-  const [profile, setprofile] = useState('');
-  const [kilometer, setKilometer] = useState('');
-  const [Budget, setBudget] = useState('');
-  const [comment, setcomment] = useState('');
-  const [CreateRide, setCreateRide] = useState('');
-  const [search, setsearch] = useState('');
   const [date, setDate] = useState('');
   const [mode, setMode] = useState('date');
   const [time, settime] = useState('');
@@ -109,7 +101,7 @@ const AddEvent = ({ navigation }) => {
         <ImageBackground
           style={styles.imgBackground}
           resizeMode="cover"
-          source={images.Addlocationbg}>
+          source={images.Eventaddbg}>
           <View style={styles.viewafterimagebg}>
             <View>
               <TouchableOpacity style={{ marginStart: 10, marginTop: 10 }}>
@@ -146,7 +138,7 @@ const AddEvent = ({ navigation }) => {
                 style={styles.input}
                 placeholderTextColor={COLORS.white}
                 placeholder="Image Upload"
-                              />
+              />
               <TouchableOpacity >
                 <Image source={icons.paperClip} style={styles.inputicon} />
               </TouchableOpacity>
@@ -166,7 +158,7 @@ const AddEvent = ({ navigation }) => {
             <Border />
 
             <View style={styles.datetimeinput}>
-              <View style={{ width: '40%', }}>
+              <View style={{ width: '50%', }}>
                 <View
                   style={styles.StartDateTime}>
                   <TextInput
@@ -175,23 +167,23 @@ const AddEvent = ({ navigation }) => {
                     placeholder="Start Date"
                     value={date}
                   />
-                  <TouchableOpacity style={{ width: '100%' }} onPress={showDatepicker}>
+                  <TouchableOpacity onPress={showDatepicker}>
                     <Image source={icons.calendar} style={styles.inputicon1} />
                   </TouchableOpacity>
                 </View>
                 <View style={styles.timeborder} />
               </View>
-              <View style={{ width: '55%', }}>
+              <View style={{ width: '50%', }}>
                 <View
                   style={styles.StartDateTime} >
                   <TextInput
-                    style={styles.input1}
+                    style={[styles.input1,]}
                     placeholderTextColor={COLORS.white}
                     placeholder="Number of Date"
                     value={date}
                   />
-                  <TouchableOpacity onPress={showDatepicker} style={{ width: '100%' }}>
-                    <Image source={icons.clock} style={styles.inputicon1} />
+                  <TouchableOpacity onPress={showDatepicker} >
+                    <Image source={icons.clock} style={[styles.inputicon1, { marginStart: 10 }]} />
                   </TouchableOpacity>
                 </View>
                 <View style={styles.timeborder} />
@@ -206,7 +198,7 @@ const AddEvent = ({ navigation }) => {
                 value={time}
               />
               <TouchableOpacity onPress={showTimepicker}>
-                <Image source={icons.clock} style={styles.inputicon} />
+                <Image source={icons.clock} style={[styles.inputicon,]} />
               </TouchableOpacity>
             </View>
             <Border />
@@ -254,21 +246,33 @@ const AddEvent = ({ navigation }) => {
           )}
           <Modal isVisible={isVisible}
             onRequestClose={() => { setModalVisible(false) }}
-            style={{ width: '50%', justifyContent: 'flex-end', alignContent: 'center', alignSelf: 'flex-end' }} >
-            <View style={{ backgroundColor: '#fff', height: 'auto', }}>
+            style={{ justifyContent: 'flex-end', alignContent: 'center', }} >
+            <View style={{ backgroundColor: COLORS.white, margin: '1%' }}>
               <View >
-                {categoryList && categoryList.map((item, index) => (
-                  < View key={index}>
-                    <Text style={{ fontSize: 18, fontWeight: '400', margin: '3%', }} key={item}>{item}</Text>
-                    <View style={{ borderBottomColor: 'grey', borderWidth: .5 }}></View>
-                  </View>
-                ))}
-                <View>
-                  <TouchableOpacity onPress={openCategoryPop} style={{ flexDirection: 'row', backgroundColor: COLORS.darkOrange, alignItems: 'center', }}>
-                    <Image source={icons.plus} style={[styles.inputicon, { margin: '3%' }]} />
-                    <Text style={{ marginLeft: '2%', color: COLORS.white, fontSize: 15 }}>Add Category</Text>
+                <View
+                  style={[styles.inputView, { width: '90%', margin: '1%' }]}>
+                  <TextInput
+                    style={[styles.input, { color: 'grey' }]}
+                    placeholderTextColor={'grey'}
+                    placeholder="Search"
+                  />
+                  <TouchableOpacity>
+                    <Image source={icons.drop_Down} style={styles.dropdown} />
                   </TouchableOpacity>
                 </View>
+                <View style={styles.modalborder} />
+                {categoryList && categoryList.map((item, index) => (
+                  < View key={index} >
+                    <Text style={styles.modallistitem} key={item}>{item}</Text>
+                    <View style={styles.modaliemborder}></View>
+                  </View>
+                ))}
+                {/* <View>
+                  <TouchableOpacity onPress={openCategoryPop} style={{ flexDirection: 'row', backgroundColor: COLORS.darkOrange, alignItems: 'center', }}>
+                    <Image source={icons.plus} style={[styles.inputicon, { margin: '3%', marginStart: 30, }]} />
+                    <Text style={styles.addcadegory}>Add Category</Text>
+                  </TouchableOpacity>
+                </View> */}
               </View>
             </View>
           </Modal>

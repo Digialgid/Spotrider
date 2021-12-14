@@ -10,17 +10,24 @@ const Tab = createBottomTabNavigator();
 export default function App() {
     return (
         <Tab.Navigator
-            screenOptions={{
+        screenOptions={{
+            headerShown:false,
+            tabBarStyle: {
+              backgroundColor: '#00bcd4',
+              borderTopRightRadius: 20,
+              borderTopLeftRadius: 20,
+              paddingVertical:3
+            },
+            style:{
+                position:'absolute',
+                bottom:0,
+                right:0,
+                left:0,
+                elevation:0,
+                height:60,
 
-                headerShown: false,
-
-                style: {
-                    background: 'red',
-                    paddingBottom: 3,
-                    activeBackgroundColor: '#c4461c',
-                    inactiveBackgroundColor: '#b55031',
-                }
-            }}>
+            },
+          }}>
             <Tab.Screen name="Location1" component={HomeScreen}
                 options={{
                     tabBarLabel: ({ focused }) => (
