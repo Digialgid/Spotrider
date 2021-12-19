@@ -23,6 +23,7 @@ export const Location2 = require('../../assets/images/location2.jpg');
 export const Location3 = require('../../assets/images/location3.jpg');
 export const Location4 = require('../../assets/images/location4.jpg');
 export const Location5 = require('../../assets/images/location5.jpg');
+export const Startride= require('../../assets/images/Start-ride-button.png');
 
 
 export default {
@@ -51,5 +52,6 @@ export default {
     Location3,
     Location4,
     Location5,
+    Startride
 
 }

@@ -18,6 +18,8 @@ export const user = require('../../assets/icons/user.png');
 export const motorcycle = require('../../assets/icons/motorcycle.png');
 export const share = require('../../assets/icons/share.png');
 export const HomeIcon = require('../../assets/icons/Home-icon.png');
+export const flag = require("../../assets/icons/flag.png");
+export const Setting  =require('../../assets/icons/Settings.png');
 export default {
     paperClip,
     edit,
@@ -38,5 +40,7 @@ export default {
     user,
     motorcycle,
     share,
-    HomeIcon
+    HomeIcon,
+    flag,
+    Setting,
 }

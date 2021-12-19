@@ -1,9 +1,92 @@
-import React from 'react';
-import { SafeAreaView, View, Image, Text, ScrollView, ImageBackground, TextInput, TouchableOpacity } from "react-native";
+import React, { useState } from 'react';
+import { SafeAreaView, View, Image, Text, ScrollView, ImageBackground, TextInput, PermissionsAndroid,TouchableOpacity } from "react-native";
 import Border from './inputBorder';
 import styles from './style';
-import { COLORS,FONTS, icons, images } from '../../Constants';
-const Addlocation = ({navigation}) => {
+import { COLORS, FONTS, icons, images } from '../../Constants';
+import {
+    launchCamera,
+    launchImageLibrary
+} from 'react-native-image-picker';
+
+
+const Addlocation = ({ navigation }) => {
+
+    const [filePath, setFilePath] = useState("");
+    const [Profilephoto, setProfilephoto] = React.useState("");
+    const requestCameraPermission = async () => {
+        if (Platform.OS === 'android') {
+            try {
+                const granted = await PermissionsAndroid.request(
+                    PermissionsAndroid.PERMISSIONS.CAMERA,
+                    {
+                        title: 'Camera Permission',
+                        message: 'App needs camera permission',
+                    },
+                );
+                // If CAMERA Permission is granted
+                return granted === PermissionsAndroid.RESULTS.GRANTED;
+            } catch (err) {
+                console.warn(err);
+                return false;
+            }
+        } else return true;
+    };
+
+    const requestExternalWritePermission = async () => {
+        if (Platform.OS === 'android') {
+            try {
+                const granted = await PermissionsAndroid.request(
+                    PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+                    {
+                        title: 'External Storage Write Permission',
+                        message: 'App needs write permission',
+                    },
+                );
+                // If WRITE_EXTERNAL_STORAGE Permission is granted
+                return granted === PermissionsAndroid.RESULTS.GRANTED;
+            } catch (err) {
+                console.warn(err);
+                alert('Write permission err', err);
+            }
+            return false;
+        } else return true;
+    };
+
+
+    const captureImage = async (type) => {
+        let options = {
+            mediaType: type,
+            maxWidth: 300,
+            maxHeight: 550,
+            quality: 1,
+            videoQuality: 'low',
+            durationLimit: 30, //Video max duration in seconds
+            saveToPhotos: true,
+        };
+        let isCameraPermitted = await requestCameraPermission();
+        let isStoragePermitted = await requestExternalWritePermission();
+        if (isCameraPermitted && isStoragePermitted) {
+            launchImageLibrary(options, (response) => {
+                console.log('Response = ', response);
+
+                if (response.didCancel) {
+                    alert('User cancelled camera picker');
+                    return;
+                } else if (response.errorCode == 'camera_unavailable') {
+                    alert('Camera not available on device');
+                    return;
+                } else if (response.errorCode == 'permission') {
+                    alert('Permission not satisfied');
+                    return;
+                } else if (response.errorCode == 'others') {
+                    alert(response.errorMessage);
+                    return;
+                }
+                let result = response.assets[0].uri
+                setProfilephoto(result)
+            });
+        }
+    };
     return (
         <SafeAreaView style={styles.SafeAreaViewstyle}>
             <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ flexGrow: 1, }}>
@@ -95,11 +178,20 @@ const Addlocation = ({navigation}) => {
                                 multiline={true}
                             />
                         </View>
-                        <View style={styles.uploadimagefolder}>
-                            <TouchableOpacity>
-                                <Text style={styles.buttonText}>UPLOAD IMAGE</Text>
-                            </TouchableOpacity>
-                        </View>
+                        <TouchableOpacity onPress={() => captureImage('photo')}>
+                            {Profilephoto ? (
+                                <View style={styles.uploadimagefolder}>
+                                   <Image  source={ ({ uri: Profilephoto })} 
+                                    style={{width:'100%',height:'100%',resizeMode:'cover',borderRadius:5}}/>
+                                </View>
+                            ) : (
+                                 <View style={styles.uploadimagefolder} >
+                                 <Text style={styles.buttonText}>UPLOAD IMAGE</Text>
+                             </View>
+                            )}
+                           
+                        </TouchableOpacity>
+
                     </View>
                     <TouchableOpacity style={styles.buttonBg} onPress={() => navigation.navigate('Followers')} >
                         <Text style={styles.buttonText}>DONE</Text>

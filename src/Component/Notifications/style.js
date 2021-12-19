@@ -33,8 +33,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         borderWidth: 1,
         borderColor: COLORS.white,
-        height: '20%'
-
+        height: 130,
     },
     EventName: {
         color: COLORS.white,

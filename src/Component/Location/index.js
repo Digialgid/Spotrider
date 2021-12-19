@@ -54,7 +54,7 @@ const HomeScreen = ({ navigation }) => {
                         />
 
                         <View style={{ width: '95%', height: 200, alignSelf: 'center', }}>
-                            <Image style={styles.imageStyle} resizeMode={'cover'} source={images.bg1} />
+                            <Image style={styles.imageStyle} resizeMode={'cover'} source={images.bg8} />
                             <View style={styles.imageTextContainer}>
                                 <View>
                                     <Text style={styles.locationName1}>Location Name</Text>
@@ -94,7 +94,7 @@ const HomeScreen = ({ navigation }) => {
                             keyExtractor={(item) => item.id}
                             renderItem={({ item }) => (
                                 <View style={styles.card2Container}>
-                                    <Image style={styles.imageStyle} resizeMode={'cover'} source={images.bg1} />
+                                    <Image style={styles.imageStyle} resizeMode={'cover'} source={images.bg8} />
                                     <View style={styles.imageTextContainer}>
                                         <View>
                                             <Text style={styles.locationName2}>Location Name</Text>

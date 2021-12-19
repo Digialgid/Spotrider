@@ -25,22 +25,26 @@ export const COLORS = {
     darkgray: '#898C95',
     realName: '#6e7280',
     Transparent: '#000000c0',
+    darkblue2: '#2a3c5e',
+    darkBlue3: '#1f4265',
 };
 
 export const SIZES = {
- width,
- height,   
+    width,
+    height,
 };
 
 export const FONTS = {
-   
-    body1: { fontFamily: "OpenSans-Regular", fontSize: wf("5%"),  },
+
+    body1: { fontFamily: "OpenSans-Regular", fontSize: wf("5%"), },
     body2: { fontFamily: "OpenSans-Regular", fontSize: wf("3.5%"), },
     body3: { fontFamily: "OpenSans-Bold", fontSize: wf("4%"), },
-    body4: { fontFamily: "OpenSans-Bold", fontSize: wf("5%"), },
+    body4: { fontFamily: "OpenSans-Bold", fontSize: wf("2.5%"), },
     body5: { fontFamily: "OpenSans-Regular", fontSize: wf("5%"), },
-    headerHeading: { fontFamily: "Poppins-SemiBold", fontSize: wf("5%"),},
-    textInput: {  fontFamily: "OpenSans-Regular",fontSize: wf("4%"), color: COLORS.white },
+    body6: { fontFamily: "OpenSans-Bold", fontSize: wf("3%"), },
+
+    headerHeading: { fontFamily: "Poppins-SemiBold", fontSize: wf("5%"), },
+    textInput: { fontFamily: "OpenSans-Regular", fontSize: wf("4%"), color: COLORS.white },
     icons: { width: 20, height: 20, tintColor: COLORS.white },
 };
 

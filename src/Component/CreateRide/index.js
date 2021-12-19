@@ -12,23 +12,21 @@ import {
   launchCamera,
   launchImageLibrary
 } from 'react-native-image-picker';
+
+
 const CreateEvent = ({ navigation }) => {
-
-
   const [date, setDate] = useState('');
   const [mode, setMode] = useState('date');
   const [time, settime] = useState('');
   const [show, setShow] = useState(false);
   const [filePath, setFilePath] = useState("");
-  const [Budgetlist, setBudgetList] = useState([{ type: "petrol", price: "1000", }, { type: "Room", price: "2000", }]);
+  const [Profilephoto, setProfilephoto] = React.useState("");
 
   const showDatepicker = (e) => {
     setMode('date');
     setShow(true);
   };
-  const openBudgetpop = () => {
-    setisVisible(true);
-  };
+
 
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
@@ -50,9 +48,6 @@ const CreateEvent = ({ navigation }) => {
     setShow(true);
   };
 
-  const setModalVisible = (visible) => {
-    setisVisible(visible);
-  }
 
   const requestCameraPermission = async () => {
     if (Platform.OS === 'android') {
@@ -108,7 +103,7 @@ const CreateEvent = ({ navigation }) => {
     let isStoragePermitted = await requestExternalWritePermission();
     if (isCameraPermitted && isStoragePermitted) {
       launchCamera(options, (response) => {
-        console.log('Response = ', response.assets.fileName);
+        console.log('Response = ', response);
 
         if (response.didCancel) {
           alert('User cancelled camera picker');
@@ -123,6 +118,8 @@ const CreateEvent = ({ navigation }) => {
           alert(response.errorMessage);
           return;
         }
+        let result = response.assets[0].uri
+        setProfilephoto(result)
       });
     }
   };
@@ -137,13 +134,13 @@ const CreateEvent = ({ navigation }) => {
           <View style={styles.viewafterimagebg}>
             <View>
               <TouchableOpacity style={{ marginStart: 10, marginTop: 10 }}>
-                <Image source={icons.leftArrow} style={[styles.inputicon, { tintColor: COLORS.lightOrange }]} />
+                <Image source={icons.leftArrow} style={[styles.inputicon, { tintColor: COLORS.darkOrange }]} />
               </TouchableOpacity>
             </View>
 
-            <View
-              style={styles.inputView}>
-              <TextInput
+            {/* <View
+              style={styles.inputView}> */}
+            {/* <TextInput
                 style={styles.input}
                 placeholderTextColor={COLORS.white}
                 placeholder="Profile Image"
@@ -151,9 +148,30 @@ const CreateEvent = ({ navigation }) => {
               />
               <TouchableOpacity onPress={() => captureImage('photo')}>
                 <Image source={icons.paperClip} style={styles.inputicon} />
+              </TouchableOpacity> */}
+            <View style={{ alignItems: 'center', marginTop: '1%', justifyContent: 'center' }}>
+              <TouchableOpacity onPress={() => captureImage('photo')}>
+                <Image
+                  source={Profilephoto === "" ? images.bg2 : ({ uri: Profilephoto })}
+                  style={{ height: 100, width: 100, borderRadius: 50, }}
+                />
+                <View style={{
+                  position: 'absolute',
+                  bottom: 10,
+                  right: 5,
+
+                }}>
+                  <Image source={icons.edit}
+                    resizeMode="contain"
+                    style={{
+                      width: 20,
+                      height: 20,
+                      tintColor: COLORS.white
+                    }} />
+                </View>
               </TouchableOpacity>
+              <Text style={{ color: COLORS.white, fontSize: 16 }}>Profile Image</Text>
             </View>
-            <Border />
 
             <View
               style={styles.inputView}>
@@ -177,7 +195,7 @@ const CreateEvent = ({ navigation }) => {
                 placeholder="Budget"
                 keyboardType={"numeric"}
               />
-              <TouchableOpacity onPress={()=>navigation.navigate('Budget')}>
+              <TouchableOpacity onPress={() => navigation.navigate('Budget')}>
                 <Image source={icons.edit} style={styles.inputicon} />
               </TouchableOpacity>
             </View>

@@ -1,13 +1,15 @@
 import React, { useState } from "react";
-import { SafeAreaView, View, Image, Text, ScrollView, ImageBackground, TextInput, TouchableOpacity, ColorPropType } from "react-native";
+import { SafeAreaView, View, Image, Text, ScrollView, ImageBackground, TextInput, TouchableOpacity, PermissionsAndroid } from "react-native";
 import Border from './inputBorder';
 import styles from './style';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { COLORS, icons, images } from '../../Constants/index';
 import Modal from "react-native-modal";
 import moment from "moment";
-import ImagePicker from 'react-native-image-picker';
-
+import {
+  launchCamera,
+  launchImageLibrary
+} from 'react-native-image-picker';
 
 const AddEvent = ({ navigation }) => {
   const [date, setDate] = useState('');
@@ -17,6 +19,7 @@ const AddEvent = ({ navigation }) => {
   const [isVisible, setisVisible] = useState(false);
   const [categoryList, setcategoryList] = useState(["Popular Location", "High range", "Water falls", "For You"]);
   const [filePath, setFilePath] = useState({});
+  const [Profilephoto, setProfilephoto] = React.useState("");
 
 
   const showDatepicker = () => {
@@ -31,6 +34,7 @@ const AddEvent = ({ navigation }) => {
   const closeCategoryPop = () => {
     setisVisible(false);
   };
+  
 
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
@@ -54,43 +58,78 @@ const AddEvent = ({ navigation }) => {
   const setModalVisible = (visible) => {
     setisVisible(visible);
   }
-
-  const chooseFile = () => {
-    let options = {
-      title: 'Select Image',
-      customButtons: [
-        {
-          name: 'customOptionKey',
-          title: 'Choose Photo from Custom Option'
-        },
-      ],
-      storageOptions: {
-        skipBackup: true,
-        path: 'images',
-      },
-    };
-    ImagePicker.showImagePicker(options, (response) => {
-      console.log('Response = ', response);
-
-      if (response.didCancel) {
-        console.log('User cancelled image picker');
-      } else if (response.error) {
-        console.log('ImagePicker Error: ', response.error);
-      } else if (response.customButton) {
-        console.log(
-          'User tapped custom button: ',
-          response.customButton
+  const requestCameraPermission = async () => {
+    if (Platform.OS === 'android') {
+      try {
+        const granted = await PermissionsAndroid.request(
+          PermissionsAndroid.PERMISSIONS.CAMERA,
+          {
+            title: 'Camera Permission',
+            message: 'App needs camera permission',
+          },
         );
-        alert(response.customButton);
-      } else {
-        let source = response;
-        // You can also display the image using data:
-        // let source = {
-        //   uri: 'data:image/jpeg;base64,' + response.data
-        // };
-        setFilePath(source);
+        // If CAMERA Permission is granted
+        return granted === PermissionsAndroid.RESULTS.GRANTED;
+      } catch (err) {
+        console.warn(err);
+        return false;
       }
-    });
+    } else return true;
+  };
+
+  const requestExternalWritePermission = async () => {
+    if (Platform.OS === 'android') {
+      try {
+        const granted = await PermissionsAndroid.request(
+          PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+          {
+            title: 'External Storage Write Permission',
+            message: 'App needs write permission',
+          },
+        );
+        // If WRITE_EXTERNAL_STORAGE Permission is granted
+        return granted === PermissionsAndroid.RESULTS.GRANTED;
+      } catch (err) {
+        console.warn(err);
+        alert('Write permission err', err);
+      }
+      return false;
+    } else return true;
+  };
+
+  const captureImage = async (type) => {
+    let options = {
+      mediaType: type,
+      maxWidth: 300,
+      maxHeight: 550,
+      quality: 1,
+      videoQuality: 'low',
+      durationLimit: 30, //Video max duration in seconds
+      saveToPhotos: true,
+    };
+    let isCameraPermitted = await requestCameraPermission();
+    let isStoragePermitted = await requestExternalWritePermission();
+    if (isCameraPermitted && isStoragePermitted) {
+      launchCamera(options, (response) => {
+        console.log('Response = ', response);
+
+        if (response.didCancel) {
+          alert('User cancelled camera picker');
+          return;
+        } else if (response.errorCode == 'camera_unavailable') {
+          alert('Camera not available on device');
+          return;
+        } else if (response.errorCode == 'permission') {
+          alert('Permission not satisfied');
+          return;
+        } else if (response.errorCode == 'others') {
+          alert(response.errorMessage);
+          return;
+        }
+        let result = response.assets[0].uri
+        setProfilephoto(result)
+      });
+    }
   };
 
 
@@ -138,8 +177,9 @@ const AddEvent = ({ navigation }) => {
                 style={styles.input}
                 placeholderTextColor={COLORS.white}
                 placeholder="Image Upload"
+                value={Profilephoto}
               />
-              <TouchableOpacity >
+              <TouchableOpacity onPress={() => captureImage('photo')} >
                 <Image source={icons.paperClip} style={styles.inputicon} />
               </TouchableOpacity>
             </View>
